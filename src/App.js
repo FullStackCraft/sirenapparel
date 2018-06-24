@@ -20,20 +20,15 @@ class App extends Component {
   }
   sendMessage() {
     axios.post("https://sirenapparel.us/new-message", this.state)
-    .then(function (response) {
+    .then((response) => {
       // response.data
       this.setState({sMessageButtonText: 'Thank you!', sMessageButtonClass: 'contact-btn success'});
       })
-      .catch(function (error) {
+      .catch((error) => {
         this.setState({sMessageButtonText: 'Woops! Not Sent :(', sMessageButtonClass: 'contact-btn error'});
     });
   }
   handleChange(i, event) {
-    console.log(i.target.name);
-    console.log(i.target.value);
-    // console.log(event.target.value);
-     // let values = [...this.state.values];
-    // values[i] = event.target.value;
      this.setState({ [i.target.name]: i.target.value });
   }
   render() {
