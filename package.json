@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "cors": "^2.8.4",
+    "morgan": "^1.9.0",
     "nodemailer": "^4.6.7",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
