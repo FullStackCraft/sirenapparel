@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="611.6" height="713.5" viewBox="0 0 573.4 668.9">
+  <g fill="#0091ff" stroke="#f8f8f8">
+    <g transform="matrix(.35087 0 0 .35087 -2054 483.7)">
+      <path stroke-width="136.4" d="M6241.3-661.9h862.5v225h-862.5z"/>
+      <path stroke-width="136.4" d="M6372.2-438.7h600.7v675h-600.7z"/>
+      <circle transform="matrix(.75 0 0 .74913 4460.9 -1801.5)" cx="2948.9" cy="2083" r="200.2" stroke-width="182"/>
+      <path stroke-width="136.4" d="M6147-391.1h225v300h-225zM6971.3-392.8h225v300h-225zM6241.3 234.5h862.5v225h-862.5z"/>
+      <path stroke-width="136.4" d="M7194.7-316.1h225v150h-225zM5922-317.3h225v150h-225zM6564.5-1014.5c-158.9.2-188.8 353-188.8 353H6977s-20-354.4-189-353.2z"/>
+    </g>
+    <path stroke-width="47.9" d="M313 24v78.8h-52.6V24z"/>
+  </g>
+</svg>
