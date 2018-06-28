@@ -10,7 +10,7 @@ const nodemailer = require('nodemailer');
 var oBodyParser = require('body-parser');
 var oServer = http.createServer(app);
 var oCorsOptions = {
-  origin: 'http://sirenapparel.us',
+  origin: ['http://sirenapparel.us', 'http://localhost:3000']
 }
 app.use(cors(oCorsOptions));
 
@@ -34,8 +34,8 @@ app.use(morgan(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:htt
 
 app.post('/new-message', (req, res) => {
   console.log(req.body);
-  oMailOptions.subject = 'Siren Apparel - New Message from sirenapparel.us from ' + req.body.sFirstName + ' ' + req.body.sLastName + ' ' + req.body.sEmail + ' ' + req.body.sPhone; // Subject line
-  oMailOptions.html = req.body.sMessage; // plain text body
+  oMailOptions.subject = 'Siren Apparel - New Message from the sirenapparel.us Homepage message box!'; // Subject line
+  oMailOptions.html = "Name: " + req.body.sFirstName + " " + req.body.sLastName + "<br/>Email: " + req.body.sEmail + "<br/>Phone: " + req.body.sPhone + "<br/><br/>Message:<br/>" + req.body.sMessage; // plain text body
   console.log(oMailOptions);
   oTransporter.sendMail(oMailOptions, function (err, info) {
      if (err) {
@@ -44,7 +44,7 @@ app.post('/new-message', (req, res) => {
        console.log(info);
      }
   });
-  res.send(200); // everything OK
+  res.sendStatus(200); // everything OK
 });
 
 // Serve static assets

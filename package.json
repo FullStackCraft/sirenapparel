@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "ajv-keywords": "^3.2.0",
     "axios": "^0.18.0",
     "cors": "^2.8.4",
     "morgan": "^1.9.0",
@@ -12,9 +13,12 @@
     "react-scripts": "1.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "start": "react-app-env start && nodemon index.js",
+    "build": "react-app-env build",
+    "test": "react-app-env test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "react-app-env": "^1.2.2"
   }
 }
