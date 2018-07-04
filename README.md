@@ -4,7 +4,7 @@ Siren Apparel is a clothing company that donates profits to fire and police depa
 
 [Check out our store on Amazon!](https://www.amazon.com/s/ref=w_bl_sl_s_ap_web_7141123011?ie=UTF8&node=7141123011&field-brandtextbin=Siren+Apparel)
 
-This repository is the site's source code for [sirenapparel.us](sirenapparel.us).
+This repository is the site's source code for [https://sirenapparel.us](https://sirenapparel.us).
 
 # ...Why is this open source?
 
