@@ -10,7 +10,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Nav/>
+        <Nav locale={this.props.locale}/>
           <HomePage/>
         <Footer/>
       </div>

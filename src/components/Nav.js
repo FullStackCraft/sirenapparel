@@ -1,9 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { FormattedMessage } from 'react-intl'
+import ReactCountryFlag from 'react-country-flag'
+
 let logoContrast = require('../images/logo/logo_contrast.svg');
 
 class Nav extends React.Component {
   render () {
+    console.log(this.props.locale);
+    let sCountryCode = this.props.locale.split('-')[1];
     return (
       <div>
         {/*menu start*/}
@@ -28,10 +33,15 @@ class Nav extends React.Component {
                 {/* Collect the nav links, forms, and other content for toggling */}
                 <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                   <ul className="nav navbar-nav navbar-right">
-                    <li className="smooth-menu"><a href="#story">Story</a></li>
-                    <li className="smooth-menu"><a href="#charity">Charity</a></li>
-                    <li className="smooth-menu"><a href="#products">Products</a></li>
-                    <li className="smooth-menu"><a href="#contact">Contact</a></li>
+                    <li className="smooth-menu no-decoration">
+                      <a className="navbar-brand" href="#home">
+                        <ReactCountryFlag code={sCountryCode}/>
+                      </a>
+                    </li>
+                    <li className="smooth-menu"><a href="#story"><FormattedMessage id="Nav.story"/></a></li>
+                    <li className="smooth-menu"><a href="#charity"><FormattedMessage id="Nav.charity"/></a></li>
+                    <li className="smooth-menu"><a href="#products"><FormattedMessage id="Nav.products"/></a></li>
+                    <li className="smooth-menu"><a href="#contact"><FormattedMessage id="Nav.contact"/></a></li>
                   </ul>{/* / ul */}
                 </div>{/* /.navbar-collapse */}
               </nav>{/*/nav */}

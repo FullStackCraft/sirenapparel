@@ -1,5 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { FormattedMessage } from 'react-intl'
+import Emoji from 'react-emoji-render';
 
 let logoContrast = require('../../../images/logo/logo_contrast.svg');
 
@@ -19,24 +21,24 @@ class Header extends React.Component {
                       <div className="col-sm-12">
                         <div className="single-slide-item-content">
                           <img src={logoContrast} width="150px" alt="logo" />
-                          <h2 className="light-text">We Are Siren Apparel.</h2>
+                          <h2 className="light-text"><FormattedMessage id="Header.title"/><sup><sup><sup><sup>*EU!<Emoji text=":wink:"/></sup></sup></sup></sup></h2>
                           <p className="light-text">
-                            <b>We create eye-catching and independently designed clothing and donate profits to fire &amp; police departments, forest range offices, and emergency medical response organizations.</b>
+                            <b><FormattedMessage id="Header.description"/></b>
                           </p>
                           <li className="smooth-menu" style={{listStyle: 'none'}}>
                             <a href="#story">
                               <button type="button" className="slide-btn">
-                                our story
+                                <FormattedMessage id="Header.story"/>
                               </button>
                             </a>
                             <a href="#charity">
                               <button type="button" className="slide-btn">
-                                charity and donations
+                                <FormattedMessage id="Header.charity"/>
                               </button>
                             </a>
                             <a href="#products">
                               <button type="button" className="slide-btn">
-                                view products
+                                <FormattedMessage id="Header.products"/>
                               </button>
                             </a>
                           </li>
