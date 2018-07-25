@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { FormattedMessage } from 'react-intl'
-import ReactCountryFlag from 'react-country-flag'
+import ReactCountryFlag from 'react-country-flag';
 
 let logoContrast = require('../images/logo/logo_contrast.svg');
 
@@ -35,7 +35,7 @@ class Nav extends React.Component {
                   <ul className="nav navbar-nav navbar-right">
                     <li className="smooth-menu no-decoration">
                       <a className="navbar-brand" href="#home">
-                        <ReactCountryFlag code={sCountryCode}/>
+                        <ReactCountryFlag code={sCountryCode} />
                       </a>
                     </li>
                     <li className="smooth-menu"><a href="#story"><FormattedMessage id="Nav.story"/></a></li>
