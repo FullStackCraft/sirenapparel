@@ -10,6 +10,10 @@ This repository is the site's source code for [https://sirenapparel.us](https://
 
 In an attempt to make Siren Apparel an Open Startup<sup>TM</sup> (credit & thanks to Pieter Levels @ levels.io for this term), I want to open source all development and make all revenue streams and donations public as a key part of the company!
 
+# This site is in active development!
+
+Follow along at https://medium.com/@sirenapparel
+
 # Thanks & Credits
 
 - [Create React App](https://github.com/facebookincubator/create-react-app)

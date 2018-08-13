@@ -6,6 +6,7 @@
     "ajv-keywords": "^3.2.0",
     "axios": "^0.18.0",
     "cors": "^2.8.4",
+    "iplocation": "^5.0.1",
     "morgan": "^1.9.0",
     "nodemailer": "^4.6.7",
     "react": "^16.4.1",
@@ -17,7 +18,7 @@
     "react-world-flags": "^1.2.4"
   },
   "scripts": {
-    "start": "react-app-env start && nodemon index.js",
+    "start": "react-app-env start",
     "build": "react-app-env build",
     "test": "react-app-env test --env=jsdom",
     "eject": "react-scripts eject"

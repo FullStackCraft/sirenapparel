@@ -7,7 +7,7 @@ let tshirt2 = require('../../../images/products/tshirt2.jpg');
 let tshirt3 = require('../../../images/products/tshirt3.jpg');
 let tshirt4 = require('../../../images/products/tshirt4.jpg');
 
-class Products extends React.Component {
+class ProductsUS extends React.Component {
   render () {
     return (
       <div>
@@ -111,4 +111,4 @@ class Products extends React.Component {
   }
 }
 
-export default Products;
+export default ProductsUS;

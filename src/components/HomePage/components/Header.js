@@ -3,6 +3,9 @@ import PropTypes from 'prop-types'
 import { FormattedMessage } from 'react-intl'
 import Emoji from 'react-emoji-render';
 
+// constants
+import * as CONSTANTS from '../../../constants';
+
 let logoContrast = require('../../../images/logo/logo_contrast.svg');
 
 class Header extends React.Component {
@@ -21,7 +24,21 @@ class Header extends React.Component {
                       <div className="col-sm-12">
                         <div className="single-slide-item-content">
                           <img src={logoContrast} width="150px" alt="logo" />
-                          <h2 className="light-text"><FormattedMessage id="Header.title"/><sup><sup><sup><sup>*EU!<Emoji text=":wink:"/></sup></sup></sup></sup></h2>
+                          { this.props.sSite === CONSTANTS.US && 
+                            <div>
+                              <h2 className="light-text"><FormattedMessage id="Header.title"/></h2>
+                            </div>
+                          }
+                          { this.props.sSite === CONSTANTS.EU && 
+                            <div>
+                              <h2 className="light-text"><FormattedMessage id="Header.title"/><sup><sup><sup><sup>*EU!<Emoji text=":wink:"/></sup></sup></sup></sup></h2> 
+                            </div>
+                          }
+                          { this.props.sSite === CONSTANTS.ASIA && 
+                            <div>
+                              <h2 className="light-text"><FormattedMessage id="Header.title"/><sup><sup><sup><sup>*ASIA!<Emoji text=":wink:"/></sup></sup></sup></sup></h2> 
+                            </div>
+                          }
                           <p className="light-text">
                             <b><FormattedMessage id="Header.description"/></b>
                           </p>

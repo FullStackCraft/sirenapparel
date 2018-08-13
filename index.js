@@ -3,6 +3,7 @@
 var http = require('http');
 const express = require('express');
 const morgan = require('morgan');
+const axios = require('axios');
 const path = require('path');
 var cors = require('cors')
 const app = express();
@@ -46,6 +47,21 @@ app.post('/new-message', (req, res) => {
   });
   res.sendStatus(200); // everything OK
 });
+
+app.post('/user-location', (req, res) => {
+  let sIP_STACK_API_KEY = process.env.IP_STACK_API_KEY;
+  let sIP = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  console.log(sIP);
+  axios.get("http://api.ipstack.com/" + sIP + "?access_key=" + sIP_STACK_API_KEY + "&format=1")
+    .then(function (oResponse) {
+      console.log(oResponse.data);
+      res.setHeader('Content-Type', 'application/json');
+      res.send(JSON.stringify({ sIsoAlpha2Code: oResponse.data.country_code }));
+    })
+    .catch(function (error) {
+      res.sendStatus(500); // send server error
+    });
+})
 
 // Serve static assets
 app.use(express.static('./build'));

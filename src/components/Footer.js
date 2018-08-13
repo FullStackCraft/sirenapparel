@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { FormattedHTMLMessage } from 'react-intl'
 
 class Footer extends React.Component {
   render () {
@@ -12,8 +13,7 @@ class Footer extends React.Component {
               <div className="col-sm-7">
                 <div className="foot-copyright pull-left">
                   <p>
-                    © 2018 Siren Apparel. Theme by &nbsp;
-                     <a href="https://www.themesine.com" className="white-bold-link">ThemeSINE</a> &amp; React-ified by <a href="https://chrisfrew.in" className="white-bold-link">Chrisfrew.in Productions</a>
+                    <FormattedHTMLMessage id="Footer.main"/>
                   </p>
                 </div>{/*/.foot-copyright*/}
               </div>{/*/.col*/}
