@@ -3,10 +3,11 @@ import PropTypes from 'prop-types'
 import axios from 'axios'
 import { FormattedMessage, FormattedHTMLMessage } from 'react-intl'
 
-// component constants
-const SEND = "SEND";
-const THANKS = "THANKS";
-const ERROR = "ERROR";
+// constants
+import * as CONSTANTS from '../../../constants';
+
+// requires
+var validator = require("email-validator");
 
 class Contact extends React.Component {
   constructor() {
@@ -17,7 +18,7 @@ class Contact extends React.Component {
       sEmail: '',
       sPhone: '',
       sMessage: '',
-      sMessageButtonText: SEND,
+      sMessageButtonText: CONSTANTS.SEND,
       sMessageButtonClass: 'contact-btn',
       bButtonDisabled: false
     }
@@ -26,27 +27,32 @@ class Contact extends React.Component {
     this.determineMessageButton = this.determineMessageButton.bind(this);
   }
   sendMessage() {
+    if (this.state.sFirstName === "" || this.state.sLastName === "" || this.state.sEmail === "" || this.state.sMessage === "") {
+      return;
+    } 
+    if (!validator.validate(this.state.sEmail)) {
+      return;
+    }
     axios.post(process.env.REACT_APP_ROOT_URL + "/new-message", this.state)
     .then((response) => {
       // response.data
-      this.setState({sMessageButtonText: THANKS, sMessageButtonClass: 'contact-btn success', bButtonDisabled: true});
+      this.setState({sMessageButtonText: CONSTANTS.THANKS, sMessageButtonClass: 'contact-btn success', bButtonDisabled: true});
       })
       .catch((error) => {
-        this.setState({sMessageButtonText: ERROR, sMessageButtonClass: 'contact-btn error'});
+        this.setState({sMessageButtonText: CONSTANTS.ERROR, sMessageButtonClass: 'contact-btn error'});
     });
   }
   handleChange(i, event) {
      this.setState({ [i.target.name]: i.target.value });
   }
   determineMessageButton() {
-    console.log(this.state.sMessageButtonText)
-    if (this.state.sMessageButtonText === SEND) {
+    if (this.state.sMessageButtonText === CONSTANTS.SEND) {
       return (
         <FormattedMessage id='Contact.sendMessageSend'>
           { sendMessageSend => <button className={this.state.sMessageButtonClass} type="button" onClick={this.sendMessage} disabled={this.state.bButtonDisabled}>{sendMessageSend}</button> }
         </FormattedMessage>
       );
-    } else if (this.state.sMessageButtonText === THANKS) {
+    } else if (this.state.sMessageButtonText === CONSTANTS.THANKS) {
       return (
         <FormattedMessage id='Contact.sendMessageThanks'>
           { sendMessageThanks => <button className={this.state.sMessageButtonClass} type="button" onClick={this.sendMessage} disabled={this.state.bButtonDisabled}>{sendMessageThanks}</button> }

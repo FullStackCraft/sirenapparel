@@ -1,27 +1,36 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { FormattedMessage } from 'react-intl'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
+import { connect } from 'react-redux';
+import store from '../store';
 import ReactCountryFlag from 'react-country-flag';
 
-// constants 
+// constant variables
 import * as CONSTANTS from '../constants';
+
+// custom components
+import LocaleModal from './LocaleModal';
+
+// requires
 const axios = require("axios");
 let aJSON = require("../data/codes.json"); // two letter ISO to three letter ISO country codes
-
 let logoContrast = require('../images/logo/logo_contrast.svg');
 
 class Nav extends React.Component {
   constructor() {
     super();
+    this.state = {
+      bLocaleModalOpen: false
+    }
     this.determineCountryFlag = this.determineCountryFlag.bind(this);
     this.determineNavText = this.determineNavText.bind(this);
+    this.openLocaleModal = this.openLocaleModal.bind(this);
   }
   determineCountryFlag(sIsoAlpha2Code) {
     let sIsoAlpha3Code;
     for (var i = 0; i < aJSON.length; i++) {
-      if (aJSON[i].iso_alpha_2 == sIsoAlpha2Code) { // look for the entry with a matching code
+      if (aJSON[i].iso_alpha_2 === sIsoAlpha2Code) { // look for the entry with a matching code
         sIsoAlpha3Code = aJSON[i].iso_alpha_3; // flag needs three letter code
-        console.log(sIsoAlpha3Code)
         return (
           <ReactCountryFlag code={sIsoAlpha2Code}/>
         );
@@ -29,21 +38,28 @@ class Nav extends React.Component {
     }
   }
   determineNavText() {
-    let sSiteText; // "UNITED STATES", "EUROPE", or "ASIA"
-    if (this.props.sSite === CONSTANTS.US) {
-      sSiteText = "UNITED STATES";
-    } else if (this.props.sSite === CONSTANTS.EU) {
-      sSiteText = "EUROPE";
-    } else if (this.props.sSite === CONSTANTS.ASIA) {
-      sSiteText = "ASIA";
+    const state = store.getState();
+    let sShopText; // "UNITED STATES", "EUROPE", or "ASIA"
+    if (state.sSite === CONSTANTS.US) {
+      sShopText = "US";
+    } else if (state.sSite === CONSTANTS.EU) {
+      sShopText = "EU";
+    } else if (state.sSite === CONSTANTS.ASIA) {
+      sShopText = "Asia";
     } else { // default to US
-      sSiteText = "UNITED STATES";
+      sShopText = "US";
     }
-    return sSiteText;
+    return sShopText;
+  }
+  openLocaleModal() {
+    this.setState({bLocaleModalOpen: true});
+  }
+  closeLocaleModal() {
+    this.setState({bLocaleModalOpen: false});
   }
   render () {
-    console.log(this.props.locale);
-    let oFlag, sSiteText;
+    const { bLocaleModalOpen } = this.state;
+    let oFlag, sShopText;
     let sLanguage = this.props.locale.split('-')[0].toUpperCase(); // locale doesn't always have country code so just get the language
     let sIsoAlpha2Code = this.props.locale.split('-')[1]; // if the locale has the secondary country, take interval
     if (sIsoAlpha2Code) { // if country locale is part of locale, use it!
@@ -59,11 +75,16 @@ class Nav extends React.Component {
           console.log(error);
         });
     }
-    sSiteText = this.determineNavText();
+    sShopText = this.determineNavText();
     return (
       <div>
         {/*menu start*/}
         <section id="menu">
+          { bLocaleModalOpen && 
+          <div>
+            <LocaleModal closeLocaleModal={this.closeLocaleModal}/>
+          </div>
+          }
           <div className="container">
             <div className="menubar">
               <nav className="navbar navbar-default">
@@ -84,25 +105,24 @@ class Nav extends React.Component {
                 {/* Collect the nav links, forms, and other content for toggling */}
                 <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                   <ul className="nav navbar-nav navbar-right">
-                    <li className="smooth-menu no-decoration">
-                      <a href="#location-langauge">
-                        {sSiteText} 
-                      </a>
-                    </li>
-                    <li className="smooth-menu no-decoration">
-                      <a href="#location-langauge">
-                        {sLanguage}
-                      </a> }
-                    </li>
-                    {oFlag && <li className="smooth-menu no-decoration">
-                       <a href="#location-langauge">
-                        { oFlag }
-                      </a> 
-                    </li> }
+                    <li>
+                      <a href="https://www.facebook.com/sirenapparel/" target="_blank" rel="noopener noreferrer"><i className="fa fa-facebook" aria-hidden="true" /></a>{/*/li*/} <span className="light-text">|</span> <a href="https://twitter.com/siren_apparel" target="_blank" rel="noopener noreferrer"><i className="fa fa-twitter" aria-hidden="true" /></a>{/*/li*/} <span className="light-text">|</span> <a href="https://www.instagram.com/sirenapparel.us" target="_blank" rel="noopener noreferrer"><i className="fa fa-instagram" aria-hidden="true" /></a>
+                    </li>{/*/li*/}
                     <li className="smooth-menu"><a href="#story"><FormattedMessage id="Nav.story"/></a></li>
                     <li className="smooth-menu"><a href="#charity"><FormattedMessage id="Nav.charity"/></a></li>
                     <li className="smooth-menu"><a href="#products"><FormattedMessage id="Nav.products"/></a></li>
                     <li className="smooth-menu"><a href="#contact"><FormattedMessage id="Nav.contact"/></a></li>
+                    <li className="smooth-menu"><a href="#cart">
+                      <div className="App__view-cart-wrapper">
+                        { this.props.iCartCount === 0 && <button className="App__view-cart" onClick={this.props.handleCartOpen}>Cart</button> }
+                        { this.props.iCartCount > 0 && <button className="App__view-cart" onClick={this.props.handleCartOpen}>Cart ({this.props.iCartCount})</button> }
+                      </div>
+                    </a></li>
+                    <li className="smooth-menu no-decoration">
+                      <a href="#location-langauge" onClick={this.openLocaleModal}>
+                        {sShopText} Shop | {sLanguage} | { oFlag && <div style={{'display':'inLine'}}>{ oFlag }</div>}
+                      </a> 
+                    </li>
                   </ul>{/* / ul */}
                 </div>{/* /.navbar-collapse */}
               </nav>{/*/nav */}
@@ -115,4 +135,4 @@ class Nav extends React.Component {
   }
 }
 
-export default Nav;
+export default connect((state) => state)(Nav);

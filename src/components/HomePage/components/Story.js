@@ -13,7 +13,7 @@ class Story extends React.Component {
               <div className="section-header contact-head  text-center">
                 <h2><FormattedMessage id="Story.title"/></h2>
                 <p>
-                  <FormattedMessage id="Story.description"/> 
+                  <FormattedHTMLMessage id="Story.description"/> 
                 </p>
                 <p>
                   <FormattedHTMLMessage id="Story.note"/> 

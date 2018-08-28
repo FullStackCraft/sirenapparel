@@ -532,7 +532,10 @@ html,body{
 .section-header h2 span{
 	color: #4d4e54;
 }
-.section-header p{
+.section-header.light-text h2 span {
+	color: white;
+}
+.section-header p {
 	color: #888;
 	font-size: 16px;
 	font-family: 'Poppins', sans-serif;
@@ -2436,6 +2439,10 @@ a:active.learn-btn{
 
 .no-decoration {
   list-style-type: none;
+}
+
+.transition-width {
+  transition: 0.5s;
 }
 
 

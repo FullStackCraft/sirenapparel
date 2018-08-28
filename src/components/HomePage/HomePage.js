@@ -1,13 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux';
+import store from '../../store';
 
 // custom components
 import Header from './components/Header';
 import Story from './components/Story';
 import Charity from './components/Charity';
-import ProductsUS from './components/ProductsUS';
-import ProductsEU from './components/ProductsEU';
-import ProductsASIA from './components/ProductsASIA';
+import Products from './components/Products';
 import Contact from './components/Contact';
 
 // constants
@@ -17,22 +17,14 @@ class HomePage extends React.Component {
   render () {
     return (
       <div>
-        <Header sSite={this.props.sSite}/>
+        <Header/>
         <Story/>
         <Charity/>
-          { this.props.sSite === CONSTANTS.US && 
-            <ProductsUS/>
-          }
-          { this.props.sSite === CONSTANTS.EU && 
-            <ProductsEU/>
-          }
-          { this.props.sSite === CONSTANTS.ASIA && 
-            <ProductsASIA/>
-          }
+        <Products/>
         <Contact/>
       </div>
     );
   }
 }
 
-export default HomePage;
+export default connect((state) => state)(HomePage);

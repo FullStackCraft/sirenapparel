@@ -1,34 +1,34 @@
 // constants
 import * as CONSTANTS from './constants';
 
-export const flattenMessages = ((nestedMessages, prefix = '') => {
-  if (nestedMessages === null) {
-    return {}
-  }
-  return Object.keys(nestedMessages).reduce((messages, key) => {
-    const value       = nestedMessages[key]
-    const prefixedKey = prefix ? `${prefix}.${key}` : key
+export function flattenMessages(nestedMessages, prefix = '') {
+    return Object.keys(nestedMessages).reduce((messages, key) => {
+        let value       = nestedMessages[key];
+        let prefixedKey = prefix ? `${prefix}.${key}` : key;
 
-    if (typeof value === 'string') {
-      Object.assign(messages, { [prefixedKey]: value })
-    } else {
-      Object.assign(messages, flattenMessages(value, prefixedKey))
-    }
-
-    return messages
-  }, {})
-})
+        if (typeof value === 'string') {
+            messages[prefixedKey] = value;
+        } else {
+            Object.assign(messages, flattenMessages(value, prefixedKey));
+        }
+        return messages;
+    }, {});
+}
 
 export function determineLocation() {
-  let sLocation = "";
+  let oSiteInfo = {};
   if (window.location.href.includes("sirenapparel.us")) {
-    sLocation = CONSTANTS.US;
+    oSiteInfo.sSite = CONSTANTS.US;
+    oSiteInfo.sSiteVendor = CONSTANTS.US_VENDOR;
   } else if (window.location.href.includes("sirenapparel.eu")) {
-    sLocation = CONSTANTS.EU;
+    oSiteInfo.sSite = CONSTANTS.EU;
+    oSiteInfo.sSiteVendor = CONSTANTS.EU_VENDOR;
   } else if (window.location.href.includes("sirenapparel.asia")) {
-    sLocation = CONSTANTS.ASIA;
-  } else { // default to US site, the good ol' original
-    sLocation = CONSTANTS.EU;
+    oSiteInfo.sSite = CONSTANTS.ASIA;
+    oSiteInfo.sSiteVendor = CONSTANTS.ASIA_VENDOR;
+  } else { // default to US site, the good ol' original (change here to test how other sites appear)
+    oSiteInfo.sSite = CONSTANTS.US;
+    oSiteInfo.sSiteVendor = CONSTANTS.US_VENDOR;
   }
-  return sLocation;
+  return oSiteInfo;
 }

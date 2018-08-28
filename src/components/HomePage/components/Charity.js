@@ -10,8 +10,8 @@ class Charity extends React.Component {
         <section id="charity" className="charity">
           <div className="container">
             <div className="charity-details">
-              <div className="section-header charity-head text-center">
-                <h2 className="light-text"><FormattedMessage id="Charity.title"/></h2>
+              <div className="section-header light-text charity-head text-center">
+                <h2><FormattedMessage className="light-text" id="Charity.title"/></h2>
                 <p>
                   <FormattedMessage id="Charity.description"/>
                 </p>
