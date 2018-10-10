@@ -113,16 +113,6 @@ app.post('/new-email', (req, res) => {
       		  console.log('Saved to DB!');
       		}
       	});
-        oMailOptions.subject = 'Siren Apparel - Example Test Newsletter!'; // Subject line
-        oMailOptions.html = '<a href="http://localhost:3000/unsubscribe?ref=' + sHashSaltEmail + '">Unsubscribe from these totally cool emails</a>'; // plain text body
-        console.log(oMailOptions);
-        oTransporter.sendMail(oMailOptions, function (err, info) {
-           if (err) {
-             console.log(err);
-           } else {
-             console.log(info);
-           }
-        });
       }
     }
   });
@@ -157,6 +147,20 @@ app.post('/unsubscribe*', (req, res) => {
     }
   });
 });
+
+// sample code left here of how to send an unsubscribe link in the newsletters:
+// oMailOptions.subject = 'Siren Apparel - Example Test Newsletter!'; // Subject line
+// oMailOptions.html = '<a href="http://localhost:3000/unsubscribe?ref=' + sHashSaltEmail + '">Unsubscribe from these totally cool emails</a>'; // plain text body
+// console.log(oMailOptions);
+// oTransporter.sendMail(oMailOptions, function (err, info) {
+//    if (err) {
+//      console.log(err);
+//    } else {
+//      console.log(info);
+//    }
+// });
+
+
 
 // Serve static assets
 app.use(express.static('./build'));

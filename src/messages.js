@@ -4,6 +4,7 @@ export default {
       story: 'Story',
       charity: 'Charity',
       products: 'Products',
+      blog: 'Blog',
       contact: 'Contact'
     },
     Header: {
@@ -80,6 +81,7 @@ export default {
       story: 'Geschichte',
       charity: 'Wohltätigkeit',
       products: 'Produkte',
+      blog: 'Blog',
       contact: 'Kontakt'
     },
     Header: {

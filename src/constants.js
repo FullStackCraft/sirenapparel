@@ -19,3 +19,5 @@ export const ERROR = "ERROR";
 export const SEND = "SEND";
 export const THANKS = "THANKS";
 
+export const aFilterTypes = ["All", "Men's", "Women's", "Accesories", "Fire", "Police", "EMT", "Forest Services", "Fight n' Flight Series"];
+

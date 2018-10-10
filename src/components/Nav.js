@@ -20,10 +20,12 @@ class Nav extends React.Component {
   constructor() {
     super();
     this.state = {
-      bLocaleModalOpen: false
+      bLocaleModalOpen: false,
+      sShopText: "",
+      sBlogLink: ""
     }
     this.determineCountryFlag = this.determineCountryFlag.bind(this);
-    this.determineNavText = this.determineNavText.bind(this);
+    this.determineLocationBasedText = this.determineLocationBasedText.bind(this);
     this.openLocaleModal = this.openLocaleModal.bind(this);
   }
   determineCountryFlag(sIsoAlpha2Code) {
@@ -37,19 +39,23 @@ class Nav extends React.Component {
       }
     }
   }
-  determineNavText() {
+  determineLocationBasedText() { // determines location based texts: so far, site name, and blog link
     const state = store.getState();
-    let sShopText; // "UNITED STATES", "EUROPE", or "ASIA"
+    let sShopText, sBlogLink; 
     if (state.sSite === CONSTANTS.US) {
       sShopText = "US";
+      sBlogLink = "https://blog.sirenapparel.us";
     } else if (state.sSite === CONSTANTS.EU) {
       sShopText = "EU";
+      sBlogLink = "https://blog.sirenapparel.eu";
     } else if (state.sSite === CONSTANTS.ASIA) {
       sShopText = "Asia";
+      sBlogLink = "https://blog.sirenapparel.asia";
     } else { // default to US
       sShopText = "US";
+      sBlogLink = "https://blog.sirenapparel.us";
     }
-    return sShopText;
+    this.setState({sShopText: sShopText, sBlogLink: sBlogLink});
   }
   openLocaleModal() {
     this.setState({bLocaleModalOpen: true});
@@ -59,7 +65,7 @@ class Nav extends React.Component {
   }
   render () {
     const { bLocaleModalOpen } = this.state;
-    let oFlag, sShopText;
+    let oFlag;
     let sLanguage = this.props.locale.split('-')[0].toUpperCase(); // locale doesn't always have country code so just get the language
     let sIsoAlpha2Code = this.props.locale.split('-')[1]; // if the locale has the secondary country, take interval
     if (sIsoAlpha2Code) { // if country locale is part of locale, use it!
@@ -75,7 +81,6 @@ class Nav extends React.Component {
           console.log(error);
         });
     }
-    sShopText = this.determineNavText();
     return (
       <div>
         {/*menu start*/}
@@ -111,6 +116,7 @@ class Nav extends React.Component {
                     <li className="smooth-menu"><a href="#story"><FormattedMessage id="Nav.story"/></a></li>
                     <li className="smooth-menu"><a href="#charity"><FormattedMessage id="Nav.charity"/></a></li>
                     <li className="smooth-menu"><a href="#products"><FormattedMessage id="Nav.products"/></a></li>
+                    <li className="smooth-menu"><a href={this.state.sBlogLink}><FormattedMessage id="Nav.blog"/></a></li>
                     <li className="smooth-menu"><a href="#contact"><FormattedMessage id="Nav.contact"/></a></li>
                     <li className="smooth-menu"><a href="#cart">
                       <div className="App__view-cart-wrapper">
@@ -120,7 +126,7 @@ class Nav extends React.Component {
                     </a></li>
                     <li className="smooth-menu no-decoration">
                       <a href="#location-langauge" onClick={this.openLocaleModal}>
-                        {sShopText} Shop | {sLanguage} | { oFlag && <div style={{'display':'inLine'}}>{ oFlag }</div>}
+                        {this.state.sShopText} Shop | {sLanguage} | { oFlag && <div style={{'display':'inLine'}}>{ oFlag }</div>}
                       </a> 
                     </li>
                   </ul>{/* / ul */}

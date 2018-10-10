@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { FormattedMessage, FormattedHTMLMessage } from 'react-intl'
 import store from '../../../store'
 import Products from '../../shopify/Products'; // shopify JS Buy SDK products 
+import { DropdownButton, MenuItem } from 'react-bootstrap';
 
 // constants
 import * as CONSTANTS from '../../../constants';
@@ -12,6 +13,7 @@ class ProductsEU extends React.Component {
   constructor() {
     super();
     this.addVariantToCart = this.addVariantToCart.bind(this);
+    this.filterProducts = this.filterProducts.bind(this);
   }
   addVariantToCart(variantId, quantity) {
     const state = store.getState(); // state from redux store
@@ -21,14 +23,19 @@ class ProductsEU extends React.Component {
       store.dispatch({type: 'ADD_VARIANT_TO_CART', payload: {isCartOpen: true, checkout: res}});
     });
   }
+  filterProducts() {
+    
+  }
   render () {
     const state = store.getState(); // state from redux store
+    const aProductsToShow = state.cart.products;
     let oProducts = <Products
-      products={state.cart.products}
+      products={aProductsToShow}
       client={state.cart.client}
       addVariantToCart={this.addVariantToCart}
     />;
     let oMessage; 
+    let aMenuItems = [];
     switch (state.location.sSite) {
       case CONSTANTS.US:
         oMessage = <FormattedHTMLMessage id="Products.descriptionUS"/>
@@ -43,6 +50,13 @@ class ProductsEU extends React.Component {
         oMessage = <FormattedHTMLMessage id="Products.descriptionUS"/>
         break;
     }
+    CONSTANTS.aFilterTypes.forEach((sFilterType, iIndex) => {
+      aMenuItems.push(<MenuItem eventKey={iIndex.toString()}>{sFilterType}</MenuItem>)
+      // <MenuItem eventKey="2">Another action</MenuItem>
+      // <MenuItem eventKey="3">Something else here</MenuItem>
+      // <MenuItem divider />
+      // <MenuItem eventKey="4">Separated link</MenuItem>
+    });
     
     return (
       <div>
@@ -55,10 +69,16 @@ class ProductsEU extends React.Component {
                 <p>
                   {oMessage}
                 </p>
-              </div>{/*/.section-header*/}
-              
-                  {oProducts}
-                
+                <br/>
+                {/*<DropdownButton
+                  bsSize="large"
+                  title="Filter Products..."
+                  id="dropdown-size-large"
+                >
+                  {aMenuItems}
+                </DropdownButton> */}
+              </div>{/*/.section-header*/}  
+              {oProducts}
             </div>{/*/.service-details*/}
           </div>{/*/.container*/}
         </section>{/*/.service*/}

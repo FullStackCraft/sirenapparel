@@ -13,6 +13,7 @@
     "nodemailer": "^4.6.7",
     "pg": "^7.4.3",
     "react": "^16.4.1",
+    "react-bootstrap": "^0.32.3",
     "react-country-flag": "^0.2.0",
     "react-dom": "^16.4.1",
     "react-emoji-render": "^0.4.4",
