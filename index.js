@@ -1,22 +1,24 @@
 'use strict';
 
-var http = require('http');
+const http = require('http');
 const express = require('express');
-var router = express.Router();
+const router = express.Router();
 const morgan = require('morgan');
 const axios = require('axios');
 const path = require('path');
 const sha3_512 = require('js-sha3').sha3_512;
-var uniqid = require('uniqid');
+const uniqid = require('uniqid');
 const { Client } = require('pg');
-var cors = require('cors')
+const cors = require('cors')
 const app = express();
 const nodemailer = require('nodemailer');
-var oBodyParser = require('body-parser');
-var oServer = http.createServer(app);
-var oCorsOptions = {
+const oBodyParser = require('body-parser');
+const oServer = http.createServer(app);
+const oCorsOptions = {
   origin: ['http://sirenapparel.us', 'http://localhost:3000']
 }
+const redirect = require("express-redirect");
+redirect(app);
 app.use(cors(oCorsOptions));
 
 let oTransporter = nodemailer.createTransport({
@@ -160,7 +162,11 @@ app.post('/unsubscribe*', (req, res) => {
 //    }
 // });
 
-
+// any blog.sirenapparel.us/* or .eu/* will redirect to our medium
+app.redirect(
+  "/blog",
+  "https://medium.com/@sirenapparel"
+);
 
 // Serve static assets
 app.use(express.static('./build'));

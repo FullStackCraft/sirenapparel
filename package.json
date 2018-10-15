@@ -7,6 +7,7 @@
     "axios": "^0.18.0",
     "cors": "^2.8.4",
     "email-validator": "^2.0.4",
+    "express-redirect": "^1.2.2",
     "iplocation": "^5.0.1",
     "js-sha3": "^0.8.0",
     "morgan": "^1.9.0",

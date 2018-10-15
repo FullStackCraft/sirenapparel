@@ -25,7 +25,7 @@ class Nav extends React.Component {
       sBlogLink: ""
     }
     this.determineCountryFlag = this.determineCountryFlag.bind(this);
-    this.determineLocationBasedText = this.determineLocationBasedText.bind(this);
+    this.determineLocationBasedElements = this.determineLocationBasedElements.bind(this);
     this.openLocaleModal = this.openLocaleModal.bind(this);
   }
   determineCountryFlag(sIsoAlpha2Code) {
@@ -39,21 +39,32 @@ class Nav extends React.Component {
       }
     }
   }
-  determineLocationBasedText() { // determines location based texts: so far, site name, and blog link
+  determineLocationBasedElements() { // determines location based texts: so far, site name, and blog link
     const state = store.getState();
     let sShopText, sBlogLink; 
+    // shop text determination
     if (state.sSite === CONSTANTS.US) {
       sShopText = "US";
-      sBlogLink = "https://blog.sirenapparel.us";
     } else if (state.sSite === CONSTANTS.EU) {
       sShopText = "EU";
-      sBlogLink = "https://blog.sirenapparel.eu";
     } else if (state.sSite === CONSTANTS.ASIA) {
       sShopText = "Asia";
-      sBlogLink = "https://blog.sirenapparel.asia";
     } else { // default to US
       sShopText = "US";
-      sBlogLink = "https://blog.sirenapparel.us";
+    }
+    // blog link determination (different for production and dev)
+    if (process.env.NODE_ENV === 'production') {
+      if (state.sSite === CONSTANTS.US) {
+        sBlogLink = "https://sirenapparel.us/blog";
+      } else if (state.sSite === CONSTANTS.EU) {
+        sBlogLink = "https://sirenapparel.eu/blog";
+      } else if (state.sSite === CONSTANTS.ASIA) {
+        sBlogLink = "https://sirenapparel.asia/blog";
+      } else { // default to US
+        sBlogLink = "https://sirenapparel.us/blog";
+      }
+    } else {
+      sBlogLink = process.env.REACT_APP_ROOT_URL + "/blog";
     }
     this.setState({sShopText: sShopText, sBlogLink: sBlogLink});
   }
@@ -62,6 +73,9 @@ class Nav extends React.Component {
   }
   closeLocaleModal() {
     this.setState({bLocaleModalOpen: false});
+  }
+  componentWillMount() {
+    this.determineLocationBasedElements();
   }
   render () {
     const { bLocaleModalOpen } = this.state;
@@ -81,6 +95,7 @@ class Nav extends React.Component {
           console.log(error);
         });
     }
+    console.log(this.state.sBlogLink);
     return (
       <div>
         {/*menu start*/}
@@ -111,7 +126,7 @@ class Nav extends React.Component {
                 <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                   <ul className="nav navbar-nav navbar-right">
                     <li>
-                      <a href="https://www.facebook.com/sirenapparel/" target="_blank" rel="noopener noreferrer"><i className="fa fa-facebook" aria-hidden="true" /></a>{/*/li*/} <span className="light-text">|</span> <a href="https://twitter.com/siren_apparel" target="_blank" rel="noopener noreferrer"><i className="fa fa-twitter" aria-hidden="true" /></a>{/*/li*/} <span className="light-text">|</span> <a href="https://www.instagram.com/sirenapparel.us" target="_blank" rel="noopener noreferrer"><i className="fa fa-instagram" aria-hidden="true" /></a>
+                      <a href="https://www.facebook.com/sirenapparel/" target="_blank" rel="noopener noreferrer"><i className="fa fa-facebook" aria-hidden="true" /></a>{/*/li*/} <span className="light-text">|</span> <a href="https://twitter.com/siren_apparel" target="_blank" rel="noopener noreferrer"><i className="fa fa-twitter" aria-hidden="true" /></a>{/*/li*/} <span className="light-text">|</span> <a href="https://www.instagram.com/sirenapparel.us" target="_blank" rel="noopener noreferrer"><i className="fa fa-instagram" aria-hidden="true" /></a><span className="light-text">|</span> <a href="https://www.medium.com/@sirenapparel" target="_blank" rel="noopener noreferrer"><i className="fa fa-medium" aria-hidden="true" /></a>
                     </li>{/*/li*/}
                     <li className="smooth-menu"><a href="#story"><FormattedMessage id="Nav.story"/></a></li>
                     <li className="smooth-menu"><a href="#charity"><FormattedMessage id="Nav.charity"/></a></li>
