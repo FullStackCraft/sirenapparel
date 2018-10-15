@@ -49,6 +49,7 @@ client.connect();
 // Setup logger
 app.use(morgan(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] :response-time ms'));
 
+// post routes
 app.post('/new-message', (req, res) => {
   console.log(req.body);
   oMailOptions.subject = 'Siren Apparel - New Message from the sirenapparel.us Homepage message box!'; // Subject line
@@ -63,7 +64,6 @@ app.post('/new-message', (req, res) => {
   });
   res.sendStatus(200); // everything OK
 });
-
 app.post('/user-location', (req, res) => {
   let sIP_STACK_API_KEY = process.env.IP_STACK_API_KEY;
   let sIP = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
@@ -78,7 +78,6 @@ app.post('/user-location', (req, res) => {
       res.sendStatus(500); // send server error
     });
 });
-
 app.post('/new-email', (req, res) => {
   let iCountRows = 0;
   // first check if this email exists
@@ -119,7 +118,6 @@ app.post('/new-email', (req, res) => {
     }
   });
 });
-
 // links in unsubscribe newsletter are like https://sirenapparel.us/unsubscribe?ref=ajskd346lghj232yiu56b3cgh24455s
 app.post('/unsubscribe*', (req, res) => {
   if (req.query.ref.includes("*")) { // prevent any wildcard at any position in the email
@@ -162,7 +160,7 @@ app.post('/unsubscribe*', (req, res) => {
 //    }
 // });
 
-// any blog.sirenapparel.us/* or .eu/* will redirect to our medium
+// any sirenapparel.us/blog or sirenapparel.eu/blog will redirect to our medium blog
 app.redirect(
   "/blog",
   "https://medium.com/@sirenapparel"

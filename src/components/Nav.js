@@ -131,7 +131,6 @@ class Nav extends React.Component {
                     <li className="smooth-menu"><a href="#story"><FormattedMessage id="Nav.story"/></a></li>
                     <li className="smooth-menu"><a href="#charity"><FormattedMessage id="Nav.charity"/></a></li>
                     <li className="smooth-menu"><a href="#products"><FormattedMessage id="Nav.products"/></a></li>
-                    <li className="smooth-menu"><a href={this.state.sBlogLink}><FormattedMessage id="Nav.blog"/></a></li>
                     <li className="smooth-menu"><a href="#contact"><FormattedMessage id="Nav.contact"/></a></li>
                     <li className="smooth-menu"><a href="#cart">
                       <div className="App__view-cart-wrapper">
