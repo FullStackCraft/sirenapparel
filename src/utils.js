@@ -1,5 +1,10 @@
-// constants
+// imports
 import * as CONSTANTS from './constants';
+import ReactCountryFlag from 'react-country-flag';
+
+// requires
+const axios = require("axios");
+let aJSON = require("./data/codes.json"); // two letter ISO to three letter ISO country codes
 
 export function flattenMessages(nestedMessages, prefix = '') {
     return Object.keys(nestedMessages).reduce((messages, key) => {
@@ -15,7 +20,7 @@ export function flattenMessages(nestedMessages, prefix = '') {
     }, {});
 }
 
-export function determineLocation() {
+export function determineSiteInfo() {
   let oSiteInfo = {};
   if (window.location.href.includes("sirenapparel.us")) {
     oSiteInfo.sSite = CONSTANTS.US;
@@ -31,4 +36,33 @@ export function determineLocation() {
     oSiteInfo.sSiteVendor = CONSTANTS.US_VENDOR;
   }
   return oSiteInfo;
+}
+
+export function determineUserCountry() {
+  
+}
+
+export function determineCountryFlag(sIsoAlpha2Code) {
+  // let sIsoAlpha3Code;
+  // for (var i = 0; i < aJSON.length; i++) {
+  //   if (aJSON[i].iso_alpha_2 === sIsoAlpha2Code) { // look for the entry with a matching code
+  //     sIsoAlpha3Code = aJSON[i].iso_alpha_3; // flag needs three letter code
+  //     return (
+  //       <ReactCountryFlag code={sIsoAlpha2Code}/>
+  //     );
+  //   }
+  // }
+}
+
+export function getFullLanguageText(sIsoAlpha2Code) {
+  switch(sIsoAlpha2Code) {
+    case "en":
+      return "English";
+    case "de":
+      return "Deutsch";
+    case "fr":
+      return "Français";
+    case "es":
+      return "Español";
+  }
 }

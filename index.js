@@ -64,7 +64,7 @@ app.post('/new-message', (req, res) => {
   });
   res.sendStatus(200); // everything OK
 });
-app.post('/user-location', (req, res) => {
+app.post('/user-country', (req, res) => {
   let sIP_STACK_API_KEY = process.env.IP_STACK_API_KEY;
   let sIP = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
   console.log(sIP);

@@ -19,7 +19,7 @@ class Products extends Component {
     } else {
       products = <p>Loading...</p>
     }
-
+    products.reverse(); // CHFE 2018.10.15 - this makes it so the products are shown newest to oldest on first load
     return (
       <div className="Product-wrapper">
         {products}

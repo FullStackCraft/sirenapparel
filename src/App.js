@@ -46,7 +46,7 @@ class App extends Component {
   handleCartOpen() {
     store.dispatch({type: 'OPEN_CART'});
   }
-  componentWillMount() {
+  componentWillMount() { // so far only an unsubscribe is in componentWillMount 
     if (window.location.href.includes('/unsubscribe?ref=')) {
       console.log('deleting...');
       axios.post(process.env.REACT_APP_ROOT_URL + "/unsubscribe?ref=" + window.location.href.split('/unsubscribe?ref=')[1])
@@ -72,7 +72,7 @@ class App extends Component {
       <div>
         <Nav locale={this.props.locale} iCartCount={iCartCount} handleCartOpen={this.handleCartOpen}/>
           <HomePage/>
-        <Footer/>
+        <Footer locale={this.props.locale}/>
         <Cart
           checkout={state.cart.checkout}
           isCartOpen={state.cart.isCartOpen}

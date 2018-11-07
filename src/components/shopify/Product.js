@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import VariantSelector from './VariantSelector';
 
+// constants
+const ONE_SIZE_FITS_MOST = "One Size Fits Most";
+
 class Product extends Component {
   constructor(props) {
     super(props);
@@ -46,10 +49,12 @@ class Product extends Component {
   }
 
   render() {
+    let aOptionNames = [];
     let variantImage = this.state.selectedVariantImage || this.props.product.images[0]
     let variant = this.state.selectedVariant || this.props.product.variants[0]
     let variantQuantity = this.state.selectedVariantQuantity || 1
     let variantSelectors = this.props.product.options.map((option) => {
+      aOptionNames.push(option.name);
       return (
         <VariantSelector
           handleOptionChange={this.handleOptionChange}
@@ -58,13 +63,13 @@ class Product extends Component {
         />
       );
     });
-    console.log(this.props.product);
+    let bShowOneSizeFitsMost = (variantSelectors.length === 1 && aOptionNames[0] === "Title");
     return (
       <div className="Product">
         {this.props.product.images.length ? <img src={variantImage.src} alt={`${this.props.product.title} product shot`}/> : null}
         <h5 className="Product__title">{this.props.product.title}</h5>
         <p>${variant.price}</p>
-        {variantSelectors}
+        {bShowOneSizeFitsMost ? <h5 className="Product__title">{ONE_SIZE_FITS_MOST}</h5> : variantSelectors}
         <label className="Product__option">
           Quantity: <input className="form-control" min="1" type="number" defaultValue={variantQuantity} onChange={this.handleQuantityChange}></input>
         </label>

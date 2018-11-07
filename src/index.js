@@ -9,7 +9,7 @@ import Client from 'shopify-buy';
 import store from './store';
 
 // custom functions
-import { determineLocation } from './utils';
+import { determineSiteInfo, getFullLanguageText } from './utils';
 
 // constants
 import * as CONSTANTS from './constants';
@@ -36,15 +36,15 @@ import messages from './messages';
 
 addLocaleData([...en, ...de, ...fr, ...it, ...es, ...zh, ...hi, ...ja]);
 
-// let locale =
-//   (navigator.languages && navigator.languages[0])
-//   || navigator.language
-//   || navigator.userLanguage
-//   || 'en'; // english as fallback if locale cannot be determined
+let locale =
+  (navigator.languages && navigator.languages[0])
+  || navigator.language
+  || navigator.userLanguage
+  || 'en'; // english as fallback if locale cannot be determined
 
-let locale = 'en'; // for now
+// let locale = 'en'; // for now
 
-let oSiteInfo = determineLocation(); // determine which site to render
+let oSiteInfo = determineSiteInfo(); // determine which site to render
 store.dispatch({type: 'SITE_LOCATION_FOUND', payload: oSiteInfo.sSite});
 
 const client = Client.buildClient({
@@ -77,6 +77,9 @@ else if (messages[locale.substring(0, 2)]) { // second-best case, the langauge b
 } else {
   oMessages = messages["en"]; // key not found; use english: "en"
 }
+
+const sFullLanguage = getFullLanguageText(locale.substring(0, 2));
+store.dispatch({type: 'LANGUAGE_CHANGED', payload: {sLanguage: locale.substring(0, 2), sFullLanguage: sFullLanguage}}); // regardless of locale nonense, the first two letters are the language. we set that
   
 ReactDOM.render(
   <Provider store={store}>

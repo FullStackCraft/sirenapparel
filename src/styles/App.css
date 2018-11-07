@@ -18017,3 +18017,6 @@ a:active.learn-btn {
 
 .transition-width {
   transition: 0.5s; }
+
+.dropdownItemStyled {
+  color: #1A1A29 !important; }

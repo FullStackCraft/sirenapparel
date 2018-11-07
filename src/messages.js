@@ -67,7 +67,7 @@ export default {
       sendMessageError: 'Woops! Not Sent :('
     },
     Footer: {
-      main: '© 2018 Siren Apparel. Theme by <a href="https://www.themesine.com" class="white-bold-link">ThemeSINE</a> &amp; React-ified by <a href="https://chrisfrew.in" class="white-bold-link">Chrisfrew.in Productions</a>'
+      main: '© 2018 Siren Apparel. Theme by <a href="https://www.themesine.com" class="white-bold-link">ThemeSINE</a> &amp; React-ified by <a href="https://chrisfrew.in/introducing-chrisfrewin-productions/" class="white-bold-link">Chrisfrew.in Productions</a>'
     },
     UnsubscribeModal: {
       successTitle: 'Unsubscribe successful!',
@@ -131,7 +131,7 @@ export default {
       sendMessageError: 'Woops! Not Sent :('
     },
     Footer: {
-      main: '© 2018 Siren Apparel. Thema bei <a href="https://www.themesine.com" class="white-bold-link">ThemeSINE</a> &amp; React-ified bei <a href="https://chrisfrew.in" class="white-bold-link">Chrisfrew.in Productions</a>'
+      main: '© 2018 Siren Apparel. Thema bei <a href="https://www.themesine.com" class="white-bold-link">ThemeSINE</a> &amp; React-ified bei <a href="https://chrisfrew.in/introducing-chrisfrewin-productions/" class="white-bold-link">Chrisfrew.in Productions</a>'
     }
   }, // EU language no. 2
   'fr': {}, // EU language no. 3

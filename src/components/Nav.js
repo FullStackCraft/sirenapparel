@@ -1,9 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import store from '../store';
-import ReactCountryFlag from 'react-country-flag';
 
 // constant variables
 import * as CONSTANTS from '../constants';
@@ -12,45 +10,33 @@ import * as CONSTANTS from '../constants';
 import LocaleModal from './LocaleModal';
 
 // requires
-const axios = require("axios");
-let aJSON = require("../data/codes.json"); // two letter ISO to three letter ISO country codes
 let logoContrast = require('../images/logo/logo_contrast.svg');
 
 class Nav extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       bLocaleModalOpen: false,
       sShopText: "",
+      sLanguage: props.locale.split('-')[0].toUpperCase(), // locale doesn't always have country code so just get the language
       sBlogLink: ""
     }
-    this.determineCountryFlag = this.determineCountryFlag.bind(this);
     this.determineLocationBasedElements = this.determineLocationBasedElements.bind(this);
     this.openLocaleModal = this.openLocaleModal.bind(this);
   }
-  determineCountryFlag(sIsoAlpha2Code) {
-    let sIsoAlpha3Code;
-    for (var i = 0; i < aJSON.length; i++) {
-      if (aJSON[i].iso_alpha_2 === sIsoAlpha2Code) { // look for the entry with a matching code
-        sIsoAlpha3Code = aJSON[i].iso_alpha_3; // flag needs three letter code
-        return (
-          <ReactCountryFlag code={sIsoAlpha2Code}/>
-        );
-      }
-    }
-  }
+
   determineLocationBasedElements() { // determines location based texts: so far, site name, and blog link
     const state = store.getState();
     let sShopText, sBlogLink; 
     // shop text determination
     if (state.sSite === CONSTANTS.US) {
-      sShopText = "US";
+      sShopText = "US Shop";
     } else if (state.sSite === CONSTANTS.EU) {
-      sShopText = "EU";
+      sShopText = "EU Shop";
     } else if (state.sSite === CONSTANTS.ASIA) {
-      sShopText = "Asia";
+      sShopText = "Asia Shop";
     } else { // default to US
-      sShopText = "US";
+      sShopText = "US Shop";
     }
     // blog link determination (different for production and dev)
     if (process.env.NODE_ENV === 'production') {
@@ -77,25 +63,11 @@ class Nav extends React.Component {
   componentWillMount() {
     this.determineLocationBasedElements();
   }
+  onClickLanguage(oEvent) {
+    this.setState({sLanguage: oEvent.target.name}); // name property of dropdown item is identical to the two letter iso code of the language
+  }
   render () {
     const { bLocaleModalOpen } = this.state;
-    let oFlag;
-    let sLanguage = this.props.locale.split('-')[0].toUpperCase(); // locale doesn't always have country code so just get the language
-    let sIsoAlpha2Code = this.props.locale.split('-')[1]; // if the locale has the secondary country, take interval
-    if (sIsoAlpha2Code) { // if country locale is part of locale, use it!
-      oFlag = this.determineCountryFlag(sIsoAlpha2Code);
-    } else { // otherwise use ipstack API on service with the user's api
-      axios.post(process.env.REACT_APP_ROOT_URL + "/user-location")
-        .then(function (oResponse) {
-          if (oResponse.data.sIsoAlpha2Code) {
-            oFlag = this.determineCountryFlag(oResponse.data.sIsoAlpha2Code);
-          }
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-    }
-    console.log(this.state.sBlogLink);
     return (
       <div>
         {/*menu start*/}
@@ -140,7 +112,7 @@ class Nav extends React.Component {
                     </a></li>
                     <li className="smooth-menu no-decoration">
                       <a href="#location-langauge" onClick={this.openLocaleModal}>
-                        {this.state.sShopText} Shop | {sLanguage} | { oFlag && <div style={{'display':'inLine'}}>{ oFlag }</div>}
+                        {this.state.sShopText} ({window.location.hostname})
                       </a> 
                     </li>
                   </ul>{/* / ul */}
