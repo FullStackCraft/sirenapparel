@@ -57,7 +57,7 @@ class ProductsEU extends React.Component {
       // <MenuItem divider />
       // <MenuItem eventKey="4">Separated link</MenuItem>
     });
-    
+    // {oProducts} // no more shopify :(
     return (
       <div>
         {/*products start*/}
@@ -70,6 +70,15 @@ class ProductsEU extends React.Component {
                   {oMessage}
                 </p>
                 <br/>
+                <h2>
+                  Due to lack of traffic, we are no longer producing our own apparel :( 
+                </h2>
+                <br/>
+                <a href="https://www.redbubble.com/people/sirenapparel/" target="_blank" rel="noopener noreferrer">
+                  <h2 className="">
+                      We have moved all our work to <span style={{textDecoration:'underline'}}>our Redbubble page</span>.
+                  </h2>
+                </a>
                 {/*<DropdownButton
                   bsSize="large"
                   title="Filter Products..."
@@ -78,7 +87,6 @@ class ProductsEU extends React.Component {
                   {aMenuItems}
                 </DropdownButton> */}
               </div>{/*/.section-header*/}  
-              {oProducts}
             </div>{/*/.service-details*/}
           </div>{/*/.container*/}
         </section>{/*/.service*/}
