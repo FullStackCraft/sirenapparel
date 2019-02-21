@@ -71,7 +71,7 @@ class ProductsEU extends React.Component {
                 </p>
                 <br/>
                 <h2>
-                  Due to lack of traffic, we are no longer producing our own apparel :( 
+                  Due to lack of traffic, we are no longer producing & shipping our apparel from Shopify :( 
                 </h2>
                 <br/>
                 <a href="https://www.redbubble.com/people/sirenapparel/" target="_blank" rel="noopener noreferrer">
