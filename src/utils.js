@@ -1,10 +1,6 @@
 // imports
 import * as CONSTANTS from './constants';
-import ReactCountryFlag from 'react-country-flag';
 
-// requires
-const axios = require("axios");
-let aJSON = require("./data/codes.json"); // two letter ISO to three letter ISO country codes
 
 export function flattenMessages(nestedMessages, prefix = '') {
     return Object.keys(nestedMessages).reduce((messages, key) => {
@@ -64,5 +60,7 @@ export function getFullLanguageText(sIsoAlpha2Code) {
       return "Français";
     case "es":
       return "Español";
+    default:
+      return "English";
   }
 }

@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { FormattedMessage, FormattedHTMLMessage } from 'react-intl'
 
 class Charity extends React.Component {

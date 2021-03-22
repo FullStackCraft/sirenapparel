@@ -23,8 +23,8 @@ export default {
     },
     Story: {
       title: 'Our Story',
-      description: "Our story begins in Potsdam, New York with Chris Frewin, who wanted to build a company to support civil service workers of all kinds: fire fighters, police officers, forest rangers, and EMTs. Chris though about how he could increase national recognition for groups across the United States - a charity fund or organization wouldn't be enough exposure. He wanted something physical that would be eye-catching and get people's attention across the country, sharing stories of police and fire departments nation wide. He was inspired by the charity based business model of Tom's Shoes, and later Parks Project, so an apparel company was on his mind. Chris realized he was also creating a lot of art and designs as a hobby. So, combining these art skills with a charity business model like Tom's, Siren Apparel was born!<br/><br/>Chris was contacted in the summer of 2013 by Alejandro Cremades, founder of Rock The Post, a crowd funding site similiar to Kickstarter. In this campaign, Siren Apparel was able to acheive $2000 in revenue and donated $500 to five different police and fire departments.<br/><br/>Then, in the winter of 2013, Chris's collegue Ben Petroski managed to secure $500 in funds by acheiving 3rd palce at the Upstate New York Small Business Competition.<br/><br/>From 2014 to 2016, Siren Apparel was on a hiatus as Chris went through graduate school and was working abroad in Europe, not creating or connecting with the community. Finally in 2017, Chris reammerged from his full time job to build Siren Apparel!",
-      note: "Hi all,<br/><br/>Chris here - we're just getting started with this totally revamped site, Amazon, and Shopify, so if you have any questions, feel free to send a message in the contact form at the bottom of this page, or email us at <a href=\"mailto:sirenapparel@gmail.com\">sirenapparel@gmail.com</a>.<br/><br/>I'm also the primary software developer of the site, so if anything is off, please let me know!<br/><br/>Thank you!<br/><br/>Chris Frewin"
+      description: "Our story begins in Potsdam, New York with Chris Frewin, who wanted to build a company to support civil service workers of all kinds: fire fighters, police officers, forest rangers, and EMTs. Chris though about how he could increase national recognition for groups across the United States - a charity fund or organization wouldn't be enough exposure. He wanted something physical that would be eye-catching and get people's attention across the country, sharing stories of police and fire departments nation wide. He was inspired by the charity based business model of Tom's Shoes, and later Parks Project, so an apparel company was on his mind. Chris realized he was also creating a lot of art and designs as a hobby. So, combining these art skills with a charity business model like Tom's, Siren Apparel was born!<br/><br/>Chris was contacted in the summer of 2013 by Alejandro Cremades, founder of Rock The Post, a crowd funding site similiar to Kickstarter. In this campaign, Siren Apparel was able to acheive $2000 in revenue and donated $500 to five different police and fire departments.<br/><br/>Then, in the winter of 2013, Chris's collegue Ben Petroski managed to secure $500 in funds by acheiving 3rd palce at the Upstate New York Small Business Competition.<br/><br/>From 2014 to 2016, Siren Apparel was on a hiatus as Chris went through graduate school and was working abroad in Europe, not creating or connecting with the community.",
+      note: "Hi all,<br/><br/>Chris here - I've retreated from this project as I didn't ever get sales. If you're still interested in ordering some of our apparel, check out the redbubble link below!"
     },
     Charity: {
       title: 'Charity and Donations',
@@ -37,13 +37,13 @@ export default {
     },
     Products: {
       title: 'Products',
-      descriptionUS: 'Uniquely and independently designed.<br/>Shipping across the US.<br/>Every purchase you make helps support our civic heroes.',
+      descriptionUS: 'Independently designed.<br/>Shipping across the US.<br/>Every purchase you make helps support our civic heroes.',
       product1TitleUS: 'Classic Hydrant Removal T-Shirt',
       product1DescriptionUS: 'Embroidered Polo with our logo under the 12 stars of the EU! Our first EU product!',
       product2TitleUS: 'Siren Apparel X /U/Thingstosay- "The Big Fire" Mashup T-Shirt',
       product2DescriptionUS: "From the Reddit post that went viral, we teamed up with /u/thingstosay-'s art, featuring front and back printing, as well as the numbers and characters on the left arm!",
       buyMessageUS: 'Buy on Shopify!',
-      descriptionEU: 'Uniquely and independently designed.<br/>Shipping to the entire EU.',
+      descriptionEU: 'Independently designed.<br/>Shipping to the entire EU.',
       product1TitleEU: 'Classic Hydrant Removal T-Shirt',
       product1DescriptionEU: 'Embroidered Polo with our logo under the 12 stars of the EU! Our first EU product!',
       product2TitleEU: 'Siren Apparel X /U/Thingstosay- "The Big Fire" Mashup T-Shirt',
@@ -67,7 +67,7 @@ export default {
       sendMessageError: 'Woops! Not Sent :('
     },
     Footer: {
-      main: '© 2018 Siren Apparel. Theme by <a href="https://www.themesine.com" class="white-bold-link">ThemeSINE</a> &amp; React-ified by <a href="https://chrisfrew.in/introducing-chrisfrewin-productions/" class="white-bold-link">Chrisfrew.in Productions</a>'
+      main: '© 2021 Siren Apparel, <a href="https://fullstackcraft.com" class="white-bold-link">Full Stack Craft</a>'
     },
     UnsubscribeModal: {
       successTitle: 'Unsubscribe successful!',
