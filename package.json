@@ -10,7 +10,7 @@
     "express-redirect": "^1.2.2",
     "iplocation": "^5.0.1",
     "js-sha3": "^0.8.0",
-    "morgan": "^1.9.0",
+    "morgan": "^1.9.1",
     "nodemailer": "^4.6.7",
     "pg": "^7.4.3",
     "react": "^16.4.1",
