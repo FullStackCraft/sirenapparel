@@ -20,7 +20,7 @@
     "react-emoji-render": "^0.4.4",
     "react-intl": "^2.4.0",
     "react-redux": "^5.0.7",
-    "react-scripts": "1.1.4",
+    "react-scripts": "5.0.1",
     "react-world-flags": "^1.2.4",
     "redux": "^4.0.0",
     "shopify-buy": "^1.7.0",
